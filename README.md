@@ -21,5 +21,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 1. Clone this repository locally and enter the directory: `git clone https://github.com/addison-codes/calculator.git && cd calculator`
 2. Install packages: `npm i`
 3. Navigate to server directory: `cd server`
-4. Have Python virtualenv install python requirements: `pip install -r requirements.txt`
+4. Create virtual env: `virtualenv env`
+5. Run the virtual env: `cd env && source bin/activate`
+4. Navigate back to server directory and have Python virtualenv install python requirements: `cd .. && pip install -r requirements.txt`
 5. Run Flask server: `python app.py`
