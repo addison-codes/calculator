@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
 import { store } from '../store'
-import axios from 'axios'
 import CalcButton from './CalcButton.vue'
 import CalcRow from './CalcRow.vue'
 
+// Utilize app state via store
 defineComponent({
   data() {
     return {
@@ -16,10 +16,13 @@ defineComponent({
 </script>
 
 <template>
+  <!-- Define component layout with buttons -->
   <div class="mx-auto overflow-hidden mt-10 mb-2 bg-teal-900 shadow-lg border rounded-lg">
     <div class="pt-16 pb-16 mb-6 p-5 text-white text-right bg-teal-800">
+      <!-- Show either current calculation in progress or the calculation that has been sent. -->
       <span class="text-sm">{{store.equals ? store.hist.slice(-1).toString().replaceAll(',', ' ') : store.calc.toString().replaceAll(',', ' ')}}</span>
       <br>
+      <!-- Show either the user input, loading state, or the answer returned. -->
       <span class="text-3xl">{{store.loading ? 'Calculating...' : store.answer ? store.answer : store.number}}</span>
     </div>
       <CalcRow>
