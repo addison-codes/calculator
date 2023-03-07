@@ -5,24 +5,28 @@ import axios from 'axios'
 export const store = reactive({
   // Define pieces of state
   calc: Array(),
-  number: 0,
+  number: '0',
   equals: false,
   loading: false,
   hist: Array(),
   answer: '',
   // Function to add a value to the calc array. Programmatically determines if input is a number or string (operator) and either appends the number to the number state or appends the number state to the calc array. If it detects an equals sign, it will send the axios request with the calc array as the payload
-
-  // TODO: Parse decimals
   addValue(value) {
     if (isNaN(value)) {
-      // value === '.' ? 
-      this.calc.push(Number(this.number), value)
-      this.number = 0
-      value === '=' ? (this.loading = true, this.request(this.calc), this.clearCalc(), this.equals = true) : ''
+      if (value === '.') {
+        this.number += '.'
+      } else if (value === 'AC') {
+        this.number = '0'
+        this.calc = Array()
+        this.answer = ''
+      } else {
+        this.calc.push(Number(this.number), value)
+        this.number = '0'
+        value === '=' ? (this.loading = true, this.request(this.calc), this.clearCalc(), this.equals = true) : ''
+      }
     } else {
       this.answer = ''
-      this.number === 0 ? value === '0' ? '' : (this.equals = false, this.number = value) : (this.equals = false, this.number += value)
-      
+      this.number === '0' ? value === '0' ? '' : (this.equals = false, this.number = value) : (this.equals = false, this.number += value)
     }
   },
   // Function to clear the calc array and push the last item to a hist array (to keep all of the calculations)
