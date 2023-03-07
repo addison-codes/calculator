@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
 import { store } from '../store'
+import axios from 'axios'
 import CalcButton from './CalcButton.vue'
 import CalcRow from './CalcRow.vue'
 
@@ -9,7 +10,7 @@ defineComponent({
     return {
       store
     }
-  }
+  },
 })
 
 </script>
@@ -17,14 +18,14 @@ defineComponent({
 <template>
   <div class="mx-auto overflow-hidden mt-10 mb-2 bg-teal-900 shadow-lg border rounded-lg">
     <div class="pt-16 pb-16 mb-6 p-5 text-white text-right bg-teal-800">
-      <span class="text-sm">{{store.calc.toString().replaceAll(',', ' ')}}</span>
+      <span class="text-sm">{{store.equals ? store.hist.slice(-1).toString().replaceAll(',', ' ') : store.calc.toString().replaceAll(',', ' ')}}</span>
       <br>
-      <span class="text-3xl">{{store.number}}</span>
+      <span class="text-3xl">{{store.loading ? 'Calculating...' : store.answer ? store.answer : store.number}}</span>
     </div>
       <CalcRow>
-        <CalcButton filled >%</CalcButton>  
-        <CalcButton filled>(</CalcButton>  
-        <CalcButton filled>)</CalcButton>  
+        <CalcButton :filled=false></CalcButton>  
+        <CalcButton :filled=false></CalcButton>  
+        <CalcButton :filled=false></CalcButton>  
         <CalcButton filled>÷</CalcButton>  
       </CalcRow>
       <CalcRow>
