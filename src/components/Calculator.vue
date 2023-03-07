@@ -17,8 +17,8 @@ defineComponent({
 
 <template>
   <!-- Define component layout with buttons -->
-  <div class="mx-auto overflow-hidden mt-10 mb-2 bg-teal-900 shadow-lg border rounded-lg">
-    <div class="pt-16 pb-16 mb-6 p-5 text-white text-right bg-teal-800">
+  <div class="mx-auto overflow-hidden max-w-sm mt-10 mb-2 bg-teal-900 shadow-lg border rounded-lg">
+    <div class="pt-16 pb-16 mb-6 p-5 text-white text-right bg-teal-800 overflow-hidden">
       <!-- Show either current calculation in progress or the calculation that has been sent. -->
       <span class="text-sm">{{store.equals ? store.hist.slice(-1).toString().replaceAll(',', ' ') : store.calc.toString().replaceAll(',', ' ')}}</span>
       <br>
@@ -50,7 +50,7 @@ defineComponent({
         <CalcButton filled>+</CalcButton>  
       </CalcRow>
       <CalcRow>
-        <CalcButton :filled=false></CalcButton>  
+        <CalcButton :filled=false>AC</CalcButton>  
         <CalcButton filled>0</CalcButton>  
         <CalcButton filled>.</CalcButton>  
         <CalcButton filled>=</CalcButton>  
